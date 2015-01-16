@@ -21,6 +21,14 @@ $(function () {
 	$.fn.combostars = function (config) {
 		'use strict';
 
+		// Deal with multiple selects by recursively applying combostars to each one
+		if (this.length > 1) {
+			this.each(function () {
+				$(this).combostars(config);
+			});
+			return this;
+		}
+
 		var options = {
 			starUrl: '../src/img/stars.png',
 			starWidth: 16,
@@ -69,5 +77,7 @@ $(function () {
 
 			wrapper.append(newStar);
 		}
+
+		return this;
 	};
 });
