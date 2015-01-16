@@ -21,18 +21,11 @@ $(function () {
 	$.fn.combostars = function (config) {
 		'use strict';
 
-		// Deal with multiple selects by recursively applying combostars to each one
-		if (this.length > 1) {
-			this.each(function () {
-				$(this).combostars(config);
-			});
-			return this;
-		}
-
 		var options = {
 			starUrl: '../src/img/stars.png',
 			starWidth: 16,
-			starHeight: 15
+			starHeight: 15,
+			clickMiddle: true
 		};
 
 		$.extend(options, config);
@@ -42,6 +35,14 @@ $(function () {
 			i, // Counter variable
 			newStar, // Newly created star
 			select = this; // The select that combostars() is called on
+
+		// Deal with multiple selects by recursively applying combostars to each one
+		if (this.length > 1) {
+			this.each(function () {
+				$(this).combostars(config);
+			});
+			return this;
+		}
 
 		/** Handles a click on a star. Updates the value of the combo box and sets view state. */
 		var starClickHandler = function () {
@@ -76,6 +77,11 @@ $(function () {
 			.on('click', starClickHandler);
 
 			wrapper.append(newStar);
+
+			// Optionally, the middle star gets clicked by default, which provides an initial state.
+			if (options.clickMiddle && i === Math.round(numStars / 2.0)) {
+				newStar.click();
+			}
 		}
 
 		return this;
