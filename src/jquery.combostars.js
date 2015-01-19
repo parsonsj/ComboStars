@@ -71,7 +71,8 @@ $(function () {
 				'padding-bottom' : 0,
 				'background-image' : 'url(' + options.starUrl + ')', // Image to display as the star
 				'background-position' : getBackgroundPosition(options.starHeight, false),
-				'font-size' : 0 // Setting font size to 0 allows us to set the height exclusively with padding
+				'font-size' : 0, // Setting font size to 0 allows us to set the height exclusively with padding
+				'cursor' : 'pointer'
 			}).addClass('combostar-star')
 			.data('star-index', i)
 			.on('click', starClickHandler);
