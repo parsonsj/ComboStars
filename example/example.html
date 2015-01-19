@@ -25,10 +25,10 @@
 		<script src="../src/jquery.combostars.js"></script>
 		<script>
 			$(function () {
-				$('#combostar').combostars();
 				$('#combostar').on('change', function () {
 					$('#starcount').text($(this).val());
 				});
+				$('#combostar').combostars();
 			});
 		</script>
 	</body>
